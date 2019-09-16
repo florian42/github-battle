@@ -184,7 +184,7 @@ li {
 
 .btn {
   padding: 10px;
-  text-decoration: uppercase;
+  text-transform: uppercase;
   letter-spacing: .25em;
   border-radius: 3px;
   border: none;
@@ -205,4 +205,26 @@ li {
 .dark-btn:disabled {
   background: #f2f2f2;
   color: #c7c7c7;
+}
+
+.players-container {
+  margin: 100px 0;
+}
+
+.avatar-small {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+}
+
+.player-info {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.player-info .link {
+  margin-left: 10px;
 }
