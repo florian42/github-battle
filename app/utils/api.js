@@ -1,5 +1,5 @@
-const id = "YOUR_CLIENT_ID"
-const sec = "YOUR_SECRET_ID"
+const id = "6a1f0c89f87fc782a6d3"
+const sec = "53f4897e9fa9d18014497bcffee4fe29c2a4a6b2"
 const params = `?client_id=${id}&client_secret=${sec}`
 
 function getErrorMsg(message, username) {
