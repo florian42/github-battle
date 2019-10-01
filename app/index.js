@@ -4,6 +4,7 @@ import './index.css'
 import Popular from './components/Popular'
 import Battle from './components/Battle'
 import { ThemeProvider } from './contexts/theme'
+import Nav from './components/Nav'
 
 // Component (Aspects of a component)
 //  State
@@ -29,9 +30,12 @@ class App extends React.Component {
     // A. refer to Aspects of a component -> A component is concerned about the ui layer
     // JSX will be converted into js by Babel: React.createElement
     return (
-      <ThemeProvider>
-        <div className='container'>
-          <Battle />
+      <ThemeProvider value={this.state}>
+        <div className={this.state.theme}>
+          <div className='container'>
+            <Nav />
+            <Battle />
+          </div>
         </div>
       </ThemeProvider>
     )
