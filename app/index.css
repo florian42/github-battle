@@ -263,3 +263,11 @@ error {
   background: #292929;
   color: #4a4a4a;
 }
+
+.space-between {
+  justify-content: space-between;
+}
+
+.nav li {
+  margin-right: 10px;
+}
