@@ -2,15 +2,13 @@ import React from 'react'
 import { battle } from '../utils/api'
 import { FaCompass, FaBriefcase, FaUsers, FaUserFriends, FaCode, FaUser } from 'react-icons/fa'
 import Card from './Card'
-import Loading from './Loading'
 import PropTypes from 'prop-types'
+import Loading from './Loading'
 import Tooltip from './Tooltip'
 import queryString from 'query-string'
 import { Link } from 'react-router-dom'
 
-
-
-function ProfileList({ profile }) {
+function ProfileList ({ profile }) {
   return (
     <ul className='card-list'>
       <li>
@@ -19,7 +17,7 @@ function ProfileList({ profile }) {
       </li>
       {profile.location && (
         <li>
-          <Tooltip text='Users location'>
+          <Tooltip text="User's location">
             <FaCompass color='rgb(144, 115, 255)' size={22} />
             {profile.location}
           </Tooltip>
@@ -27,7 +25,7 @@ function ProfileList({ profile }) {
       )}
       {profile.company && (
         <li>
-          <Tooltip text='Users company'>
+          <Tooltip text="User's company">
             <FaBriefcase color='#795548' size={22} />
             {profile.company}
           </Tooltip>
@@ -36,7 +34,7 @@ function ProfileList({ profile }) {
       <li>
         <FaUsers color='rgb(129, 195, 245)' size={22} />
         {profile.followers.toLocaleString()} followers
-            </li>
+      </li>
       <li>
         <FaUserFriends color='rgb(64, 183, 95)' size={22} />
         {profile.following.toLocaleString()} following
@@ -50,20 +48,16 @@ ProfileList.propTypes = {
 }
 
 export default class Results extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      winner: null,
-      loser: null,
-      error: null,
-      loading: true
-    }
+  state = {
+    winner: null,
+    loser: null,
+    error: null,
+    loading: true
   }
-  componentDidMount() {
+  componentDidMount () {
     const { playerOne, playerTwo } = queryString.parse(this.props.location.search)
 
-    battle([playerOne, playerTwo])
+    battle([ playerOne, playerTwo ])
       .then((players) => {
         this.setState({
           winner: players[0],
@@ -101,31 +95,24 @@ export default class Results extends React.Component {
             href={winner.profile.html_url}
             name={winner.profile.login}
           >
-            <ProfileList
-              profile={winner.profile}
-            />
+            <ProfileList profile={winner.profile}/>
           </Card>
           <Card
             header={winner.score === loser.score ? 'Tie' : 'Loser'}
             subheader={`Score: ${loser.score.toLocaleString()}`}
             avatar={loser.profile.avatar_url}
-            href={loser.profile.html_url}
             name={loser.profile.login}
+            href={loser.profile.html_url}
           >
-            <ProfileList profile={loser.profile} />
+            <ProfileList profile={loser.profile}/>
           </Card>
         </div>
         <Link
-          className='btn dark-btn btn-space'
-          to='/battle'>
-          Reset
-      </Link>
+          to='/battle'
+          className='btn dark-btn btn-space'>
+            Reset
+        </Link>
       </React.Fragment>
     )
   }
-}
-
-Results.propTypes = {
-  playerOne: PropTypes.string.isRequired,
-  playerTwo: PropTypes.string.isRequired,
 }
